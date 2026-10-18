@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
 
 
+
 }
 
 android {
@@ -54,4 +55,15 @@ dependencies {
     // ViewModel and lifecycle
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+
+    // Koin - Dependency Injection
+    implementation("io.insert-koin:koin-android:4.1.1")
+
+    // Mock API server for unit testing
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+
+    // Run suspend functions in unit tests
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
+
+
 }

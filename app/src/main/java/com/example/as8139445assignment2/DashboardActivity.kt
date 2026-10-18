@@ -1,5 +1,5 @@
 package com.example.as8139445assignment2
-
+import org.koin.android.ext.android.inject
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -13,7 +13,8 @@ import kotlinx.coroutines.launch
 
 // Displays entities retrieved from the dashboard API
 class DashboardActivity : AppCompatActivity() {
-
+    // Koin provides the repository
+    private val repository: EntityRepository by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
@@ -45,8 +46,7 @@ class DashboardActivity : AppCompatActivity() {
             statusText.text = "Loading dashboard..."
 
             try {
-                val response = RetrofitClient.apiService
-                    .getDashboard(keypass)
+                val response = repository.getDashboard(keypass)
 
                 if (response.isSuccessful) {
                     val entities = response.body()?.entities.orEmpty()

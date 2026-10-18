@@ -9,9 +9,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
-
+    // Koin provides the API service automatically
+    private val repository: EntityRepository by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,9 +44,8 @@ class MainActivity : AppCompatActivity() {
                 loginButton.isEnabled = false
 
                 try {
-                    val response = RetrofitClient.apiService.login(
-                        LoginRequest(user, pass)
-                    )
+                    val response = repository.login(user, pass)
+
 
                     if (response.isSuccessful &&
                         response.body() != null) {
