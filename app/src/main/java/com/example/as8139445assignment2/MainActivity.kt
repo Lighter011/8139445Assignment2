@@ -1,4 +1,3 @@
-
 package com.example.as8139445assignment2
 
 import android.content.Intent
@@ -11,9 +10,12 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 class MainActivity : AppCompatActivity() {
     // Koin provides the API service automatically
-    private val repository: EntityRepository by inject()
+
+    private val loginViewModel: LoginViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,7 +46,6 @@ class MainActivity : AppCompatActivity() {
                 loginButton.isEnabled = false
 
                 try {
-                    val response = repository.login(user, pass)
 
 
                     if (response.isSuccessful &&

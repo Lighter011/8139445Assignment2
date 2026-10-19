@@ -28,7 +28,6 @@ class DetailsActivity : AppCompatActivity() {
         if (!entityJson.isNullOrEmpty()) {
             try {
                 val entity = JsonParser.parseString(
-                    entityJson
                 ).asJsonObject
 
                 // Format text, numbers, and lists

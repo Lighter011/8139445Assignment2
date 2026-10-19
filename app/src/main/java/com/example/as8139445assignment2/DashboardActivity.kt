@@ -1,5 +1,4 @@
 package com.example.as8139445assignment2
-import org.koin.android.ext.android.inject
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,10 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 // Displays entities retrieved from the dashboard API
 class DashboardActivity : AppCompatActivity() {
     // Koin provides the repository
-    private val repository: EntityRepository by inject()
+
+    private val dashboardViewModel: DashboardViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
@@ -46,7 +49,6 @@ class DashboardActivity : AppCompatActivity() {
             statusText.text = "Loading dashboard..."
 
             try {
-                val response = repository.getDashboard(keypass)
 
                 if (response.isSuccessful) {
                     val entities = response.body()?.entities.orEmpty()
