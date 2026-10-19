@@ -7,21 +7,22 @@ import org.junit.Test
 
 class DetailsViewModelTest {
 
+
+
     @Test
     fun selectedEntityIsStoredCorrectly() {
-
         val viewModel = DetailsViewModel()
 
         val entity = """
-            {
-                "name": "Kotlin",
-                "description": "Programming language"
-            }
-        """.trimIndent()
+        {
+            "name": "Kotlin",
+            "description": "Programming language"
+        }
+    """.trimIndent()
 
-        viewModel.setEnti
-        assertEquals(ty(entity)
-entity, viewModel.getEntity())
+        viewModel.setEntity(entity)
+
+        assertEquals(entity, viewModel.getEntity())
     }
 
     @Test
